@@ -1,38 +1,37 @@
-const { getAllBooksHandler } = require("./handler");
+const {
+  
+  getAllBooks,
+  
+} = require('./handler');
+
 
 const routes = [
-  {
-    method: "GET",
-    path: "/",
-    handler: () => {
-      return "ini halaman home";
-    },
-  },
   // {
-  //   method: "POST",
-  //   path: "/books",
-  //   handler: addBooksHandler,
+  //   method: 'GET',
+  //   path: '/books/{id}',
+  //   handler: getBookById,
   // },
   {
-    method: "GET",
-    path: "/books",
-    handler: getAllBooksHandler,
+    method: 'GET',
+    path: '/books',
+    handler: getAllBooks,
   },
   // {
-  //   method: "GET",
-  //   path: "/books/{bookId}",
-  //   handler: getByIdBooksHandler,
+  //   method: 'POST',
+  //   path: '/books',
+  //   handler: addBook,
   // },
   // {
-  //   method: "PUT",
-  //   path: "/books/{bookId}",
-  //   handler: editBooksHandler,
+  //   method: 'PUT',
+  //   path: '/books/{id}',
+  //   handler: editBookById,
   // },
   // {
-  //   method: "DELETE",
-  //   path: "/books/{bookId}",
-  //   handler: deleteBooksHandler,
+  //   method: 'DELETE',
+  //   path: '/books/{id}',
+  //   handler: deleteBookById,
   // },
+  
 ];
 
 module.exports = routes;

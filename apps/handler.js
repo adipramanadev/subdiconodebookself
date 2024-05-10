@@ -1,110 +1,38 @@
 const { nanoid } = require('nanoid')
-const bookself = require('./books')
+const books = require('./books')
 //getallBook
-const getAllBooksHandler = (request, h) => {
-    const { name, reading, finished } = request.query
+const getAllBooks = (request, result) => {
+    const { name, reading, finished } = request.query;
   
-    if (name) {
-      const lowName = name.toLowerCase()
+    let filteredBooks = books;
   
-      const response = h.response({
-        status: 'success',
-        data: {
-          books: bookself
-            .filter((n) => n.name === lowName)
-            .map((books) => ({
-              id: books.id,
-              name: books.name,
-              publisher: books.publisher
-            }))
-        }
-      })
-      response.code(200)
-      return response
+    if (name !== undefined) {
+      filteredBooks = filteredBooks.filter((book) => book
+        .name.toLowerCase().includes(name.toLowerCase()));
     }
   
-    if (reading === '1') {
-      const response = h.response({
-        status: 'success',
-        data: {
-          books: bookself
-            .filter((r) => r.reading === true)
-            .map((books) => ({
-              id: books.id,
-              name: books.name,
-              publisher: books.publisher
-            }))
-        }
-      })
-      response.code(200)
-      return response
+    if (reading !== undefined) {
+      filteredBooks = filteredBooks.filter((book) => book.reading === !!Number(reading));
     }
   
-    if (reading === '0') {
-      const response = h.response({
-        status: 'success',
-        data: {
-          books: bookself
-            .filter((r) => r.reading === false)
-            .map((books) => ({
-              id: books.id,
-              name: books.name,
-              publisher: books.publisher
-            }))
-        }
-      })
-      response.code(200)
-      return response
+    if (finished !== undefined) {
+      filteredBooks = filteredBooks.filter((book) => book.finished === !!Number(finished));
     }
   
-    if (finished === '1') {
-      const response = h.response({
-        status: 'success',
-        data: {
-          books: bookself
-            .filter((f) => f.finished === true)
-            .map((books) => ({
-              id: books.id,
-              name: books.name,
-              publisher: books.publisher
-            }))
-        }
-      })
-      response.code(200)
-      return response
-    }
-  
-    if (finished === '0') {
-      const response = h.response({
-        status: 'success',
-        data: {
-          books: bookself
-            .filter((f) => f.finished === false)
-            .map((books) => ({
-              id: books.id,
-              name: books.name,
-              publisher: books.publisher
-            }))
-        }
-      })
-      response.code(200)
-      return response
-    }
-  
-    const response = h.response({
+    const response = result.response({
       status: 'success',
       data: {
-        books: bookself.map((m) => ({
-          id: m.id,
-          name: m.name,
-          publisher: m.publisher
-        }))
-      }
-    })
-    response.code(200)
-    return response
-  }
-
+        books: filteredBooks.map((book) => ({
+          id: book.id,
+          name: book.name,
+          publisher: book.publisher,
+        })),
+      },
+    });
+    response.code(200);
+  
+    return response;
+  };
 module.exports = {
-    getAllBooksHandler
+    getAllBooks
 }
