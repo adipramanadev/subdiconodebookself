@@ -10,7 +10,7 @@ const getAllBooksHandler = (request, h) => {
       const response = h.response({
         status: 'success',
         data: {
-          books: bookselft
+          books: bookself
             .filter((n) => n.name === lowName)
             .map((books) => ({
               id: books.id,
@@ -27,7 +27,7 @@ const getAllBooksHandler = (request, h) => {
       const response = h.response({
         status: 'success',
         data: {
-          books: bookselft
+          books: bookself
             .filter((r) => r.reading === true)
             .map((books) => ({
               id: books.id,
@@ -44,7 +44,7 @@ const getAllBooksHandler = (request, h) => {
       const response = h.response({
         status: 'success',
         data: {
-          books: bookselft
+          books: bookself
             .filter((r) => r.reading === false)
             .map((books) => ({
               id: books.id,
@@ -61,7 +61,7 @@ const getAllBooksHandler = (request, h) => {
       const response = h.response({
         status: 'success',
         data: {
-          books: bookselft
+          books: bookself
             .filter((f) => f.finished === true)
             .map((books) => ({
               id: books.id,
@@ -78,7 +78,7 @@ const getAllBooksHandler = (request, h) => {
       const response = h.response({
         status: 'success',
         data: {
-          books: bookselft
+          books: bookself
             .filter((f) => f.finished === false)
             .map((books) => ({
               id: books.id,
@@ -94,7 +94,7 @@ const getAllBooksHandler = (request, h) => {
     const response = h.response({
       status: 'success',
       data: {
-        books: bookselft.map((m) => ({
+        books: bookself.map((m) => ({
           id: m.id,
           name: m.name,
           publisher: m.publisher
