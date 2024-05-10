@@ -1,0 +1,1 @@
+const startServer = require('./apps/server');
