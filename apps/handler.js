@@ -104,3 +104,7 @@ const getAllBooksHandler = (request, h) => {
     response.code(200)
     return response
   }
+
+module.exports = {
+    getAllBooksHandler
+}
