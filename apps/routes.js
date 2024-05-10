@@ -3,7 +3,7 @@ const {
   getBookById,
   addBook,
   editBookById,
-  deleteBookById
+  deleteBookById,
 } = require("./handler");
 
 const routes = [
